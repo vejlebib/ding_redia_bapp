@@ -1,0 +1,90 @@
+<?php
+/*
+* UDVIDELSER FOR RSS-FEEDET MED NYHEDER:
+* <redia-rss:display-starttime>...</redia-rss:display-starttime><!-- Publikationstid som unix time stamp -->
+* <redia-rss:display-endtime>...</redia-rss:display-endtime><!-- Afpublikationstid som unix time stamp -->
+* <redia-rss:category-id>...</redia-rss:category-id><!-- Id på kategori der skal sættes på elementet -->
+* <redia-rss:media>
+* <redia-rss:item>
+* <redia-rss:url>...</redia-rss:url><!-- Absolut URL til mediet -->
+* </redia-rss:item>
+* ...
+* </redia-rss:media>
+* 
+* UDVIDELSER FOR RSS-FEEDET MED ARRANGEMENTER:
+* <redia-rss:display-starttime>...</redia-rss:display-starttime><!-- Publikationstid som unix time stamp -->
+* <redia-rss:display-endtime>...</redia-rss:display-endtime><!-- Afpublikationstid som unix time stamp -->
+* <redia-rss:arrangement-location>...</redia-rss:location><!-- Sted (fritekst) -->
+* <redia-rss:arrangement-starttime>...</redia-rss:starttime><!-- Arrangements starttid (kun for arrangementer) -->
+* <redia-rss:arrangement-endtime>...</redia-rss:endtime><!-- Arrangements sluttid (kun for arrangementer) -->
+* <redia-rss:media>
+* <redia-rss:item>
+* <redia-rss:url>...</redia-rss:url><!-- Absolut URL til mediet -->
+* </redia-rss:item>
+* ...
+* </redia-rss:media>
+*/
+
+function ding_redia_bapp_views_rss_item_elements_alter($elements) {
+  $elements['redia-rss:display-starttime'] = array(
+    'title' => t('Redia RSS display start time'),
+    'description' => t('Publication time as unix time stamp'),
+  );
+	
+	$elements['redia-rss:display-endtime'] = array(
+    'title' => t('Redia RSS display end time'),
+    'description' => t('De-publication time as unix time stamp'),
+  );
+	
+	$elements['redia-rss:category-id'] = array(
+    'title' => t('Redia RSS Category ID'),
+    'description' => t('Category-ID to attach to the element'),
+  );
+	
+	$elements['redia-rss:media'] = array(
+    'title' => t('Redia RSS media'),
+    'description' => t('Path to media - contains redia-rss:url (is styled with a template)'),
+  );
+	
+	$elements['redia-rss:arrangement-location'] = array(
+    'title' => t('Redia RSS event location'),
+    'description' => t(''),
+  );
+	$elements['redia-rss:arrangement-starttime'] = array(
+    'title' => t('Redia RSS event start time'),
+    'description' => t('Start time for event'),
+  );
+	$elements['redia-rss:arrangement-endtime'] = array(
+    'title' => t('Redia RSS event end time'),
+    'description' => t('End time for event'),
+  );
+}
+
+/**
+ * Implementation of hook_theme().
+ */
+function ding_redia_bapp_theme($existing) {
+    return array(
+        'views_view_field__redia_bapp__feed__path' => array(
+           'arguments' => array(
+					   'view' => NULL, 
+						 'field' => NULL, 
+						 'row' => NULL,
+						 ),
+           'template' => 'views-view-field--redia-bapp--feed--path',
+           'original hook' => 'views_view_field',
+					 'path' => drupal_get_path('module', 'ding_redia_bapp'),
+					 
+        ),
+    );
+}
+
+/**
+ * Implementation of hook_views_api().
+ */
+function ding_redia_bapp_views_api() {
+  return array(
+    'api' => 2,
+    'path' => drupal_get_path('module', 'ding_redia_bapp'),
+  );
+} 

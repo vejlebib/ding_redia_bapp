@@ -1,0 +1,5 @@
+core = "6.x"
+dependencies[] = "views_rss"
+description = "Provides views_rss options for the BAPP (Library App) from Redia"
+name = "Ding! Redia BAPP"
+package = "Ding!"
