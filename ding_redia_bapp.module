@@ -52,11 +52,11 @@ function ding_redia_bapp_views_rss_item_elements_alter($elements) {
   );
 	$elements['redia-rss:arrangement-starttime'] = array(
     'title' => t('Redia RSS event start time'),
-    'description' => t('Start time for event'),
+    'description' => t('Start time for event as unix time stamp'),
   );
 	$elements['redia-rss:arrangement-endtime'] = array(
     'title' => t('Redia RSS event end time'),
-    'description' => t('End time for event'),
+    'description' => t('End time for event as unix time stamp'),
   );
 }
 
@@ -76,9 +76,20 @@ function ding_redia_bapp_theme($existing) {
 					 'path' => drupal_get_path('module', 'ding_redia_bapp'),
 					 
         ),
+				'views_view_field__redia_app__feed__field_list_image_fid' => array(
+           'arguments' => array(
+					   'view' => NULL, 
+						 'field' => NULL, 
+						 'row' => NULL,
+						 ),
+           'template' => 'views-view-field--redia-app--feed--field-list-image-fid',
+           'original hook' => 'views_view_field',
+					 'path' => drupal_get_path('module', 'ding_redia_bapp'),
+					 
+        ),
     );
 }
-
+views-view-field--redia-app--feed--field-list-image-fid.tpl.php
 /**
  * Implementation of hook_views_api().
  */

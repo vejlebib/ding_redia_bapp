@@ -193,9 +193,8 @@ function ding_redia_bapp_views_default_views() {
     'path' => array(
       'label' => '',
       'alter' => array(
-        'alter_text' => 1,
-        'text' => '<redia-rss:item><redia-rss:url>[path]</redia-rss:url></redia-rss:item>
-  ',
+        'alter_text' => 0,
+        'text' => '',
         'make_link' => 0,
         'path' => '',
         'absolute' => 0,
@@ -622,9 +621,8 @@ function ding_redia_bapp_views_default_views() {
     'path' => array(
       'label' => '',
       'alter' => array(
-        'alter_text' => 1,
-        'text' => '<redia-rss:item><redia-rss:url>[path]</redia-rss:url></redia-rss:item>
-  ',
+        'alter_text' => 0,
+        'text' => '',
         'make_link' => 0,
         'path' => '',
         'absolute' => 0,
@@ -933,7 +931,7 @@ function ding_redia_bapp_views_default_views() {
     'feed_settings' => array(
       'feed_description' => 'Redia Arrangements feed',
       'namespaces' => array(
-        'redia-rss' => 'http://redia.dk',
+        'redia-rss' => 'http://xml.redia.dk/rss',
       ),
       'feed_in_links' => 1,
     ),
@@ -1147,9 +1145,8 @@ function ding_redia_bapp_views_default_views() {
     'path' => array(
       'label' => '',
       'alter' => array(
-        'alter_text' => 1,
-        'text' => '<redia-rss:item><redia-rss:url>[path]</redia-rss:url></redia-rss:item>
-  ',
+        'alter_text' => 0,
+        'text' => '',
         'make_link' => 0,
         'path' => '',
         'absolute' => 0,
@@ -1344,7 +1341,7 @@ function ding_redia_bapp_views_default_views() {
     'feed_settings' => array(
       'feed_description' => 'Nyheder',
       'namespaces' => array(
-        'redia-rss' => 'http://redia.dk',
+        'redia-rss' => 'http://xml.redia.dk/rss',
       ),
       'feed_in_links' => 1,
     ),
