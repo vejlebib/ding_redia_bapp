@@ -89,7 +89,7 @@ function ding_redia_bapp_theme($existing) {
         ),
     );
 }
-views-view-field--redia-app--feed--field-list-image-fid.tpl.php
+
 /**
  * Implementation of hook_views_api().
  */
