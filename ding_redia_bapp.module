@@ -41,10 +41,12 @@ function ding_redia_bapp_views_rss_item_elements() {
   $elements['redia-rss:display-endtime'] = array(
     'description' => t('Redia RSS display end time'),
   );
-  $elements['redia-rss:category-id'] = array(
+  /*
+	$elements['redia-rss:category-id'] = array(
     'configurable' => FALSE,
     'preprocess functions' => array('ding_redia_bapp_preprocess_window_no'),
   );
+	*/
   $elements['redia-rss:media'] = array(
     'description' => t('Redia RSS media'),
   );
