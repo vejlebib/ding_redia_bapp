@@ -78,16 +78,6 @@ function ding_redia_bapp_theme($existing) {
         'original hook' => 'views_view_field',
         'path' => drupal_get_path('module', 'ding_redia_bapp'),
       ),
-      'views_view_field__redia_bapp__feed__tid' => array(
-        'arguments' => array(
-          'view' => NULL,
-          'field' => NULL,
-          'row' => NULL,
-        ),
-        'template' => 'views-view-field--redia-bapp--feed--tid',
-        'original hook' => 'views_view_field',
-        'path' => drupal_get_path('module', 'ding_redia_bapp'),
-      ),
 			
 			/*
 			'views_view_views_rss__redia_bapp__feed' => array(
