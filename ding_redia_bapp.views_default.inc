@@ -1,1419 +1,311 @@
 <?php
+/**
+ * @file
+ * ding_redia_bapp.views_default.inc
+ */
 
 /**
- * Implementation of hook_views_default_views().
+ * Implements hook_views_default_views().
  */
 function ding_redia_bapp_views_default_views() {
-  $views = array();
+  $export = array();
 
-  // Exported view: redia_bapp
-  $view = new view;
+  $view = new view();
   $view->name = 'redia_bapp';
-  $view->description = 'RSS feeds for Redia mobile app';
-  $view->tag = '';
+  $view->description = '';
+  $view->tag = 'default';
   $view->base_table = 'node';
-  $view->core = 6;
-  $view->api_version = '2';
+  $view->human_name = 'Redia BAPP';
+  $view->core = 7;
+  $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-  $handler = $view->new_display('default', 'Standarder', 'default');
-  $handler->override_option('relationships', array(
-    'field_library_ref_nid' => array(
-      'label' => 'Bibliotek',
-      'required' => 0,
-      'delta' => -1,
-      'id' => 'field_library_ref_nid',
-      'table' => 'node_data_field_library_ref',
-      'field' => 'field_library_ref_nid',
-      'relationship' => 'none',
-    ),
-  ));
-  $handler->override_option('fields', array(
-    'counter' => array(
-      'label' => 'View resultattæller',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'counter_start' => '1',
-      'exclude' => 0,
-      'id' => 'counter',
-      'table' => 'views',
-      'field' => 'counter',
-      'override' => array(
-        'button' => 'Tilsidesæt',
-      ),
-      'relationship' => 'none',
-    ),
-    'nid' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_node' => 0,
-      'exclude' => 0,
-      'id' => 'nid',
-      'table' => 'node',
-      'field' => 'nid',
-      'relationship' => 'none',
-    ),
-    'title' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_node' => 0,
-      'exclude' => 0,
-      'id' => 'title',
-      'table' => 'node',
-      'field' => 'title',
-      'relationship' => 'none',
-    ),
-    'body' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'exclude' => 0,
-      'id' => 'body',
-      'table' => 'node_revisions',
-      'field' => 'body',
-      'relationship' => 'none',
-    ),
-    'field_list_image_fid' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_node' => 0,
-      'label_type' => 'none',
-      'format' => '120_120_url',
-      'multiple' => array(
-        'group' => TRUE,
-        'multiple_number' => '',
-        'multiple_from' => '',
-        'multiple_reversed' => FALSE,
-      ),
-      'exclude' => 0,
-      'id' => 'field_list_image_fid',
-      'table' => 'node_data_field_list_image',
-      'field' => 'field_list_image_fid',
-      'relationship' => 'none',
-    ),
-    'field_datetime_value' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 1,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_node' => 0,
-      'label_type' => 'none',
-      'format' => 'unix_timestamp',
-      'multiple' => array(
-        'multiple_number' => '',
-        'multiple_from' => '',
-        'multiple_to' => '',
-        'group' => '',
-      ),
-      'repeat' => array(
-        'show_repeat_rule' => '',
-      ),
-      'fromto' => array(
-        'fromto' => 'value',
-      ),
-      'exclude' => 0,
-      'id' => 'field_datetime_value',
-      'table' => 'node_data_field_datetime',
-      'field' => 'field_datetime_value',
-      'relationship' => 'none',
-      'override' => array(
-        'button' => 'Tilsidesæt',
-      ),
-    ),
-    'field_datetime_value2' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 0,
-        'ellipsis' => 0,
-        'html' => 0,
-        'strip_tags' => 1,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_node' => 0,
-      'label_type' => 'none',
-      'format' => 'unix_timestamp',
-      'multiple' => array(
-        'multiple_number' => '',
-        'multiple_from' => '',
-        'multiple_to' => '',
-        'group' => '',
-      ),
-      'repeat' => array(
-        'show_repeat_rule' => '',
-      ),
-      'fromto' => array(
-        'fromto' => 'value2',
-      ),
-      'exclude' => 0,
-      'id' => 'field_datetime_value2',
-      'table' => 'node_data_field_datetime',
-      'field' => 'field_datetime_value2',
-      'relationship' => 'none',
-      'override' => array(
-        'button' => 'Tilsidesæt',
-      ),
-    ),
-    'path' => array(
-      'label' => 'Sti',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'absolute' => 1,
-      'exclude' => 0,
-      'id' => 'path',
-      'table' => 'node',
-      'field' => 'path',
-      'relationship' => 'none',
-    ),
-    'address' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 1,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'hide' => array(
-        'locpick' => 'locpick',
-        'fax' => 'fax',
-        'phone' => 'phone',
-        'province_name' => 'province_name',
-        'country_name' => 'country_name',
-        'map_link' => 'map_link',
-        'coords' => 'coords',
-        'name' => 0,
-        'street' => 0,
-        'additional' => 0,
-        'city' => 0,
-        'province' => 0,
-        'postal_code' => 0,
-        'country' => 0,
-      ),
-      'exclude' => 0,
-      'id' => 'address',
-      'table' => 'location',
-      'field' => 'address',
-      'relationship' => 'field_library_ref_nid',
-      'override' => array(
-        'button' => 'Tilsidesæt',
-      ),
-    ),
-    'created' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'date_format' => 'custom',
-      'custom_date_format' => 'U',
-      'exclude' => 0,
-      'id' => 'created',
-      'table' => 'node',
-      'field' => 'created',
-      'relationship' => 'none',
-      'override' => array(
-        'button' => 'Tilsidesæt',
-      ),
-    ),
-    'created_1' => array(
-      'label' => 'PubDate RFC-format',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'date_format' => 'custom',
-      'custom_date_format' => 'r',
-      'exclude' => 0,
-      'id' => 'created_1',
-      'table' => 'node',
-      'field' => 'created',
-      'override' => array(
-        'button' => 'Tilsidesæt',
-      ),
-      'relationship' => 'none',
-    ),
-    'tid' => array(
-      'label' => 'Alle termer',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'type' => 'separator',
-      'separator' => ', ',
-      'link_to_taxonomy' => 0,
-      'limit' => 1,
-      'vids' => array(
-        1 => 1,
-        4 => 0,
-        5 => 0,
-        2 => 0,
-      ),
-      'exclude' => 0,
-      'id' => 'tid',
-      'table' => 'term_node',
-      'field' => 'tid',
-      'override' => array(
-        'button' => 'Tilsidesæt',
-      ),
-      'relationship' => 'none',
-    ),
-    'phpcode' => array(
-      'label' => 'Oprettelsesdato plus 14 dage',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'value' => '<?php echo ($data->node_created)+3600+14*24*60*60;?>',
-      'exclude' => 0,
-      'id' => 'phpcode',
-      'table' => 'customfield',
-      'field' => 'phpcode',
-      'relationship' => 'none',
-    ),
-    'phpcode_1' => array(
-      'id' => 'phpcode_1',
-      'table' => 'customfield',
-      'field' => 'phpcode',
-    ),
-  ));
-  $handler->override_option('sorts', array(
-    'field_datetime_value' => array(
-      'id' => 'field_datetime_value',
-      'table' => 'node_data_field_datetime',
-      'field' => 'field_datetime_value',
-    ),
-  ));
-  $handler->override_option('filters', array(
-    'status' => array(
-      'operator' => '=',
-      'value' => '1',
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'id' => 'status',
-      'table' => 'node',
-      'field' => 'status',
-      'relationship' => 'none',
-    ),
-    'type' => array(
-      'id' => 'type',
-      'table' => 'node',
-      'field' => 'type',
-    ),
-  ));
-  $handler->override_option('access', array(
-    'type' => 'none',
-  ));
-  $handler->override_option('cache', array(
-    'type' => 'none',
-  ));
-  $handler = $view->new_display('feed', 'Redia Feed Arrangementer', 'feed_1');
-  $handler->override_option('fields', array(
-    'counter' => array(
-      'label' => 'View resultattæller',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'counter_start' => '1',
-      'exclude' => 0,
-      'id' => 'counter',
-      'table' => 'views',
-      'field' => 'counter',
-      'override' => array(
-        'button' => 'Tilsidesæt',
-      ),
-      'relationship' => 'none',
-    ),
-    'nid' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_node' => 0,
-      'exclude' => 0,
-      'id' => 'nid',
-      'table' => 'node',
-      'field' => 'nid',
-      'relationship' => 'none',
-    ),
-    'title' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_node' => 0,
-      'exclude' => 0,
-      'id' => 'title',
-      'table' => 'node',
-      'field' => 'title',
-      'relationship' => 'none',
-    ),
-    'body' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'exclude' => 0,
-      'id' => 'body',
-      'table' => 'node_revisions',
-      'field' => 'body',
-      'relationship' => 'none',
-    ),
-    'field_list_image_fid' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_node' => 0,
-      'label_type' => 'none',
-      'format' => '120_120_url',
-      'multiple' => array(
-        'group' => TRUE,
-        'multiple_number' => '',
-        'multiple_from' => '',
-        'multiple_reversed' => FALSE,
-      ),
-      'exclude' => 0,
-      'id' => 'field_list_image_fid',
-      'table' => 'node_data_field_list_image',
-      'field' => 'field_list_image_fid',
-      'relationship' => 'none',
-    ),
-    'field_datetime_value' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 1,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_node' => 0,
-      'label_type' => 'none',
-      'format' => 'unix_timestamp',
-      'multiple' => array(
-        'multiple_number' => '',
-        'multiple_from' => '',
-        'multiple_to' => '',
-        'group' => '',
-      ),
-      'repeat' => array(
-        'show_repeat_rule' => '',
-      ),
-      'fromto' => array(
-        'fromto' => 'value',
-      ),
-      'exclude' => 0,
-      'id' => 'field_datetime_value',
-      'table' => 'node_data_field_datetime',
-      'field' => 'field_datetime_value',
-      'relationship' => 'none',
-      'override' => array(
-        'button' => 'Tilsidesæt',
-      ),
-    ),
-    'field_datetime_value2' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 0,
-        'ellipsis' => 0,
-        'html' => 0,
-        'strip_tags' => 1,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_node' => 0,
-      'label_type' => 'none',
-      'format' => 'unix_timestamp',
-      'multiple' => array(
-        'multiple_number' => '',
-        'multiple_from' => '',
-        'multiple_to' => '',
-        'group' => '',
-      ),
-      'repeat' => array(
-        'show_repeat_rule' => '',
-      ),
-      'fromto' => array(
-        'fromto' => 'value2',
-      ),
-      'exclude' => 0,
-      'id' => 'field_datetime_value2',
-      'table' => 'node_data_field_datetime',
-      'field' => 'field_datetime_value2',
-      'relationship' => 'none',
-      'override' => array(
-        'button' => 'Tilsidesæt',
-      ),
-    ),
-    'path' => array(
-      'label' => 'Sti',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'absolute' => 1,
-      'exclude' => 0,
-      'id' => 'path',
-      'table' => 'node',
-      'field' => 'path',
-      'relationship' => 'none',
-    ),
-    'address' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 1,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'hide' => array(
-        'locpick' => 'locpick',
-        'fax' => 'fax',
-        'phone' => 'phone',
-        'province_name' => 'province_name',
-        'country_name' => 'country_name',
-        'map_link' => 'map_link',
-        'coords' => 'coords',
-        'name' => 0,
-        'street' => 0,
-        'additional' => 0,
-        'city' => 0,
-        'province' => 0,
-        'postal_code' => 0,
-        'country' => 0,
-      ),
-      'exclude' => 0,
-      'id' => 'address',
-      'table' => 'location',
-      'field' => 'address',
-      'relationship' => 'field_library_ref_nid',
-      'override' => array(
-        'button' => 'Tilsidesæt',
-      ),
-    ),
-    'created' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'date_format' => 'custom',
-      'custom_date_format' => 'U',
-      'exclude' => 0,
-      'id' => 'created',
-      'table' => 'node',
-      'field' => 'created',
-      'relationship' => 'none',
-      'override' => array(
-        'button' => 'Tilsidesæt',
-      ),
-    ),
-    'created_1' => array(
-      'label' => 'PubDate RFC-format',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'date_format' => 'custom',
-      'custom_date_format' => 'r',
-      'exclude' => 0,
-      'id' => 'created_1',
-      'table' => 'node',
-      'field' => 'created',
-      'override' => array(
-        'button' => 'Tilsidesæt',
-      ),
-      'relationship' => 'none',
-    ),
-    'tid' => array(
-      'label' => 'Alle termer',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'type' => 'separator',
-      'separator' => ', ',
-      'link_to_taxonomy' => 0,
-      'limit' => 1,
-      'vids' => array(
-        1 => 1,
-        4 => 0,
-        5 => 0,
-        2 => 0,
-      ),
-      'exclude' => 0,
-      'id' => 'tid',
-      'table' => 'term_node',
-      'field' => 'tid',
-      'override' => array(
-        'button' => 'Tilsidesæt',
-      ),
-      'relationship' => 'none',
-    ),
-    'phpcode' => array(
-      'label' => 'Oprettelsesdato plus 14 dage',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'value' => '<?php echo ($data->node_created)+3600+14*24*60*60;?>',
-      'exclude' => 0,
-      'id' => 'phpcode',
-      'table' => 'customfield',
-      'field' => 'phpcode',
-      'relationship' => 'none',
-    ),
-    'phpcode_1' => array(
-      'label' => 'Fra dato plus 1 time',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'absolute' => 0,
-        'link_class' => '',
-        'alt' => '',
-        'rel' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'value' => '<?php echo strtotime($data->node_data_field_datetime_field_datetime_value)+3600+60*60;?>',
-      'exclude' => 0,
-      'id' => 'phpcode_1',
-      'table' => 'customfield',
-      'field' => 'phpcode',
-      'override' => array(
-        'button' => 'Brug standard',
-      ),
-      'relationship' => 'none',
-    ),
-  ));
-  $handler->override_option('sorts', array(
-    'field_datetime_value' => array(
-      'order' => 'ASC',
-      'delta' => -1,
-      'id' => 'field_datetime_value',
-      'table' => 'node_data_field_datetime',
-      'field' => 'field_datetime_value',
-      'override' => array(
-        'button' => 'Brug standard',
-      ),
-      'relationship' => 'none',
-    ),
-  ));
-  $handler->override_option('filters', array(
-    'status' => array(
-      'operator' => '=',
-      'value' => '1',
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'id' => 'status',
-      'table' => 'node',
-      'field' => 'status',
-      'relationship' => 'none',
-    ),
-    'type' => array(
-      'operator' => 'in',
-      'value' => array(
-        'event' => 'event',
-      ),
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'id' => 'type',
-      'table' => 'node',
-      'field' => 'type',
-      'override' => array(
-        'button' => 'Brug standard',
-      ),
-      'relationship' => 'none',
-    ),
-    'date_filter' => array(
-      'operator' => '>=',
-      'value' => array(
-        'value' => NULL,
-        'min' => NULL,
-        'max' => NULL,
-        'default_date' => 'now',
-        'default_to_date' => '',
-      ),
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'date_fields' => array(
-        'node_data_field_datetime.field_datetime_value' => 'node_data_field_datetime.field_datetime_value',
-      ),
-      'date_method' => 'OR',
-      'granularity' => 'day',
-      'form_type' => 'date_select',
-      'default_date' => 'now',
-      'default_to_date' => '',
-      'year_range' => '-3:+3',
-      'id' => 'date_filter',
-      'table' => 'node',
-      'field' => 'date_filter',
-      'override' => array(
-        'button' => 'Brug standard',
-      ),
-      'relationship' => 'none',
-    ),
-  ));
-  $handler->override_option('title', 'Kommende arrangementer i Vejle Bibliotekerne');
-  $handler->override_option('style_plugin', 'rss_fields');
-  $handler->override_option('style_options', array(
-    'mission_description' => FALSE,
-    'description' => '',
-    'channel' => array(
-      'core' => array(
-        'views_rss_core' => array(
-          'description' => '',
-          'language' => '',
-          'category' => '',
-          'copyright' => '',
-          'managingEditor' => '',
-          'webMaster' => '',
-          'generator' => '',
-          'docs' => '',
-          'cloud' => '',
-          'ttl' => '',
-          'skipHours' => '',
-          'skipDays' => '',
-        ),
-      ),
-    ),
-    'item' => array(
-      'core' => array(
-        'views_rss_core' => array(
-          'title' => 'title',
-          'link' => 'path',
-          'description' => 'body',
-          'author' => '',
-          'category' => '',
-          'comments' => '',
-          'enclosure' => '',
-          'guid' => 'path',
-          'pubDate' => 'created_1',
-        ),
-      ),
-      'dc' => array(
-        'views_rss_dc' => array(
-          'title' => '',
-          'creator' => '',
-          'subject' => '',
-          'description' => '',
-          'publisher' => '',
-          'contributor' => '',
-          'date' => '',
-          'type' => '',
-          'format' => '',
-          'identifier' => '',
-          'source' => '',
-          'language' => '',
-          'relation' => '',
-          'coverage' => '',
-          'rights' => '',
-        ),
-      ),
-      'redia-rss' => array(
-        'ding_redia_bapp' => array(
-          'display-starttime' => 'created',
-          'display-endtime' => 'field_datetime_value',
-          'media' => 'field_list_image_fid',
-          'arrangement-location' => 'address',
-          'arrangement-starttime' => 'field_datetime_value',
-          'arrangement-endtime' => 'phpcode_1',
-        ),
-      ),
-    ),
-    'feed_settings' => array(
-      'feed_in_links' => 0,
-      'exposed_in_source' => 0,
-    ),
-  ));
-  $handler->override_option('row_plugin', '');
-  $handler->override_option('path', 'redia/feed/arrangementer');
-  $handler->override_option('menu', array(
-    'type' => 'none',
-    'title' => '',
-    'description' => '',
-    'weight' => 0,
-    'name' => 'navigation',
-  ));
-  $handler->override_option('tab_options', array(
-    'type' => 'none',
-    'title' => '',
-    'description' => '',
-    'weight' => 0,
-    'name' => 'navigation',
-  ));
-  $handler->override_option('displays', array());
-  $handler->override_option('sitename_title', 0);
-  $handler = $view->new_display('feed', 'Redia Feed Nyheder', 'feed_2');
-  $handler->override_option('relationships', array());
-  $handler->override_option('sorts', array(
-    'created' => array(
-      'order' => 'DESC',
-      'granularity' => 'second',
-      'id' => 'created',
-      'table' => 'node',
-      'field' => 'created',
-      'override' => array(
-        'button' => 'Brug standard',
-      ),
-      'relationship' => 'none',
-    ),
-  ));
-  $handler->override_option('filters', array(
-    'status' => array(
-      'operator' => '=',
-      'value' => '1',
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'id' => 'status',
-      'table' => 'node',
-      'field' => 'status',
-      'relationship' => 'none',
-    ),
-    'type' => array(
-      'operator' => 'in',
-      'value' => array(
-        'article' => 'article',
-      ),
-      'group' => '0',
-      'exposed' => FALSE,
-      'expose' => array(
-        'operator' => FALSE,
-        'label' => '',
-      ),
-      'id' => 'type',
-      'table' => 'node',
-      'field' => 'type',
-      'override' => array(
-        'button' => 'Brug standard',
-      ),
-      'relationship' => 'none',
-    ),
-  ));
-  $handler->override_option('title', 'Nyheder fra Vejle Bibliotekerne');
-  $handler->override_option('style_plugin', 'rss_fields');
-  $handler->override_option('style_options', array(
-    'mission_description' => FALSE,
-    'description' => '',
-    'channel' => array(
-      'core' => array(
-        'views_rss_core' => array(
-          'description' => '',
-          'language' => '',
-          'category' => '',
-          'copyright' => '',
-          'managingEditor' => '',
-          'webMaster' => '',
-          'generator' => '',
-          'docs' => '',
-          'cloud' => '',
-          'ttl' => '',
-          'skipHours' => '',
-          'skipDays' => '',
-        ),
-      ),
-    ),
-    'item' => array(
-      'core' => array(
-        'views_rss_core' => array(
-          'title' => 'title',
-          'link' => 'path',
-          'description' => 'body',
-          'author' => '',
-          'category' => 'phpcode',
-          'comments' => '',
-          'enclosure' => '',
-          'guid' => 'path',
-          'pubDate' => 'created_1',
-        ),
-      ),
-      'dc' => array(
-        'views_rss_dc' => array(
-          'title' => '',
-          'creator' => '',
-          'subject' => '',
-          'description' => '',
-          'publisher' => '',
-          'contributor' => '',
-          'date' => '',
-          'type' => '',
-          'format' => '',
-          'identifier' => '',
-          'source' => '',
-          'language' => '',
-          'relation' => '',
-          'coverage' => '',
-          'rights' => '',
-        ),
-      ),
-      'redia-rss' => array(
-        'ding_redia_bapp' => array(
-          'display-starttime' => 'created',
-          'display-endtime' => 'phpcode',
-          'media' => 'field_list_image_fid',
-          'arrangement-location' => '',
-          'arrangement-starttime' => '',
-          'arrangement-endtime' => '',
-        ),
-      ),
-    ),
-    'feed_settings' => array(
-      'feed_in_links' => 0,
-      'exposed_in_source' => 0,
-    ),
-  ));
-  $handler->override_option('row_plugin', '');
-  $handler->override_option('path', 'redia/feed/nyheder');
-  $handler->override_option('menu', array(
-    'type' => 'none',
-    'title' => '',
-    'description' => '',
-    'weight' => 0,
-    'name' => 'navigation',
-  ));
-  $handler->override_option('tab_options', array(
-    'type' => 'none',
-    'title' => '',
-    'description' => '',
-    'weight' => 0,
-    'name' => 'navigation',
-  ));
-  $handler->override_option('displays', array());
-  $handler->override_option('sitename_title', 0);
 
-  $views[$view->name] = $view;
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'mere';
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Udfør';
+  $handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Gendan';
+  $handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Sortér efter';
+  $handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'Stigende';
+  $handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'Faldende';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_label'] = 'Antal elementer';
+  $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all_label'] = '- Alle -';
+  $handler->display->display_options['pager']['options']['expose']['offset_label'] = 'Forskydning';
+  $handler->display->display_options['pager']['options']['tags']['first'] = '« første';
+  $handler->display->display_options['pager']['options']['tags']['previous'] = '‹ forrige';
+  $handler->display->display_options['pager']['options']['tags']['next'] = 'næste ›';
+  $handler->display->display_options['pager']['options']['tags']['last'] = 'sidste »';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Forbindelse: Indhold: Forfatter */
+  $handler->display->display_options['relationships']['uid']['id'] = 'uid';
+  $handler->display->display_options['relationships']['uid']['table'] = 'node';
+  $handler->display->display_options['relationships']['uid']['field'] = 'uid';
+  /* Felt: Indhold: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  /* Felt: Oprettelsesdato (PubDate RFC-format) */
+  $handler->display->display_options['fields']['created']['id'] = 'created';
+  $handler->display->display_options['fields']['created']['table'] = 'node';
+  $handler->display->display_options['fields']['created']['field'] = 'created';
+  $handler->display->display_options['fields']['created']['ui_name'] = 'Oprettelsesdato (PubDate RFC-format)';
+  $handler->display->display_options['fields']['created']['label'] = 'PubDate RFC-format';
+  $handler->display->display_options['fields']['created']['date_format'] = 'custom';
+  $handler->display->display_options['fields']['created']['custom_date_format'] = 'r';
+  /* Felt: Indhold: Forfatter uid */
+  $handler->display->display_options['fields']['uid']['id'] = 'uid';
+  $handler->display->display_options['fields']['uid']['table'] = 'node';
+  $handler->display->display_options['fields']['uid']['field'] = 'uid';
+  $handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
+  /* Felt: Bruger: Navn */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  /* Felt: Indhold: Sti */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'node';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  $handler->display->display_options['fields']['path']['absolute'] = TRUE;
+  /* Felt: Indhold: Titel */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Felt: Indhold: Lead */
+  $handler->display->display_options['fields']['field_ding_news_lead']['id'] = 'field_ding_news_lead';
+  $handler->display->display_options['fields']['field_ding_news_lead']['table'] = 'field_data_field_ding_news_lead';
+  $handler->display->display_options['fields']['field_ding_news_lead']['field'] = 'field_ding_news_lead';
+  /* Felt: Tekst (Lead + Body) */
+  $handler->display->display_options['fields']['field_ding_news_body']['id'] = 'field_ding_news_body';
+  $handler->display->display_options['fields']['field_ding_news_body']['table'] = 'field_data_field_ding_news_body';
+  $handler->display->display_options['fields']['field_ding_news_body']['field'] = 'field_ding_news_body';
+  $handler->display->display_options['fields']['field_ding_news_body']['ui_name'] = 'Tekst (Lead + Body)';
+  $handler->display->display_options['fields']['field_ding_news_body']['label'] = 'Brødtekst';
+  $handler->display->display_options['fields']['field_ding_news_body']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_ding_news_body']['alter']['text'] = '[field_ding_news_lead]<br/>
+[field_ding_news_body]';
+  /* Felt: Oprettelsesdato +14 dage */
+  $handler->display->display_options['fields']['created_1']['id'] = 'created_1';
+  $handler->display->display_options['fields']['created_1']['table'] = 'node';
+  $handler->display->display_options['fields']['created_1']['field'] = 'created';
+  $handler->display->display_options['fields']['created_1']['ui_name'] = 'Oprettelsesdato +14 dage';
+  $handler->display->display_options['fields']['created_1']['label'] = 'Oprettelsesdato +14 dage';
+  $handler->display->display_options['fields']['created_1']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['created_1']['alter']['text'] = '[created_1]';
+  $handler->display->display_options['fields']['created_1']['date_format'] = 'custom';
+  $handler->display->display_options['fields']['created_1']['custom_date_format'] = 'r';
+  /* Sorteringskriterie: Indhold: Oprettelsesdato */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Filterkriterie: Indhold: Udgivet */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filterkriterie: Indhold: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'ding_news' => 'ding_news',
+  );
 
-  return $views;
+  /* Display: Redia Feed News */
+  $handler = $view->new_display('feed', 'Redia Feed News', 'redia_bapps_feed_news');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Nyheder fra Vejle Bibliotekerne';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['style_plugin'] = 'rss';
+  $handler->display->display_options['row_plugin'] = 'rss_fields';
+  $handler->display->display_options['row_options']['title_field'] = 'title';
+  $handler->display->display_options['row_options']['link_field'] = 'path';
+  $handler->display->display_options['row_options']['description_field'] = 'field_ding_news_body';
+  $handler->display->display_options['row_options']['creator_field'] = 'name';
+  $handler->display->display_options['row_options']['date_field'] = 'created';
+  $handler->display->display_options['row_options']['guid_field_options'] = array(
+    'guid_field' => 'path',
+    'guid_field_is_permalink' => 0,
+  );
+  $handler->display->display_options['path'] = 'redia/feed/nyheder';
+  $handler->display->display_options['sitename_title'] = 0;
+
+  /* Display: Redia Feed Events */
+  $handler = $view->new_display('feed', 'Redia Feed Events', 'redia_bapps_feed_events');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Kommende arrangementer i Vejle Bibliotekerne';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['style_plugin'] = 'rss';
+  $handler->display->display_options['row_plugin'] = 'rss_fields';
+  $handler->display->display_options['row_options']['title_field'] = 'title';
+  $handler->display->display_options['row_options']['link_field'] = 'path';
+  $handler->display->display_options['row_options']['description_field'] = 'field_ding_event_body';
+  $handler->display->display_options['row_options']['creator_field'] = 'name';
+  $handler->display->display_options['row_options']['date_field'] = 'created';
+  $handler->display->display_options['row_options']['guid_field_options'] = array(
+    'guid_field' => 'path',
+    'guid_field_is_permalink' => 0,
+  );
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Felt: Indhold: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  /* Felt: Oprettelsesdato (PubDate RFC-format) */
+  $handler->display->display_options['fields']['created']['id'] = 'created';
+  $handler->display->display_options['fields']['created']['table'] = 'node';
+  $handler->display->display_options['fields']['created']['field'] = 'created';
+  $handler->display->display_options['fields']['created']['ui_name'] = 'Oprettelsesdato (PubDate RFC-format)';
+  $handler->display->display_options['fields']['created']['label'] = 'PubDate RFC-format';
+  $handler->display->display_options['fields']['created']['date_format'] = 'custom';
+  $handler->display->display_options['fields']['created']['custom_date_format'] = 'r';
+  /* Felt: Indhold: Forfatter uid */
+  $handler->display->display_options['fields']['uid']['id'] = 'uid';
+  $handler->display->display_options['fields']['uid']['table'] = 'node';
+  $handler->display->display_options['fields']['uid']['field'] = 'uid';
+  $handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
+  /* Felt: Bruger: Navn */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  /* Felt: Indhold: Sti */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'node';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  $handler->display->display_options['fields']['path']['absolute'] = TRUE;
+  /* Felt: Indhold: Titel */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Felt: Oprettelsesdato +14 dage */
+  $handler->display->display_options['fields']['created_1']['id'] = 'created_1';
+  $handler->display->display_options['fields']['created_1']['table'] = 'node';
+  $handler->display->display_options['fields']['created_1']['field'] = 'created';
+  $handler->display->display_options['fields']['created_1']['ui_name'] = 'Oprettelsesdato +14 dage';
+  $handler->display->display_options['fields']['created_1']['label'] = 'Oprettelsesdato +14 dage';
+  $handler->display->display_options['fields']['created_1']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['created_1']['alter']['text'] = '[created_1]';
+  $handler->display->display_options['fields']['created_1']['date_format'] = 'custom';
+  $handler->display->display_options['fields']['created_1']['custom_date_format'] = 'r';
+  /* Felt: Event lead */
+  $handler->display->display_options['fields']['field_ding_event_lead']['id'] = 'field_ding_event_lead';
+  $handler->display->display_options['fields']['field_ding_event_lead']['table'] = 'field_data_field_ding_event_lead';
+  $handler->display->display_options['fields']['field_ding_event_lead']['field'] = 'field_ding_event_lead';
+  $handler->display->display_options['fields']['field_ding_event_lead']['ui_name'] = 'Event lead';
+  /* Felt: Event Tekst (Lead + Body) */
+  $handler->display->display_options['fields']['field_ding_event_body']['id'] = 'field_ding_event_body';
+  $handler->display->display_options['fields']['field_ding_event_body']['table'] = 'field_data_field_ding_event_body';
+  $handler->display->display_options['fields']['field_ding_event_body']['field'] = 'field_ding_event_body';
+  $handler->display->display_options['fields']['field_ding_event_body']['ui_name'] = 'Event Tekst (Lead + Body)';
+  $handler->display->display_options['fields']['field_ding_event_body']['label'] = 'event brødtekst ';
+  $handler->display->display_options['fields']['field_ding_event_body']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_ding_event_body']['alter']['text'] = '[field_ding_event_lead]<br/>
+[field_ding_event_body]';
+  /* Felt: Event from date */
+  $handler->display->display_options['fields']['field_ding_event_date']['id'] = 'field_ding_event_date';
+  $handler->display->display_options['fields']['field_ding_event_date']['table'] = 'field_data_field_ding_event_date';
+  $handler->display->display_options['fields']['field_ding_event_date']['field'] = 'field_ding_event_date';
+  $handler->display->display_options['fields']['field_ding_event_date']['ui_name'] = 'Event from date';
+  $handler->display->display_options['fields']['field_ding_event_date']['label'] = 'event dato start';
+  $handler->display->display_options['fields']['field_ding_event_date']['settings'] = array(
+    'format_type' => 'long_date_only',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Felt: Event to date */
+  $handler->display->display_options['fields']['field_ding_event_date_1']['id'] = 'field_ding_event_date_1';
+  $handler->display->display_options['fields']['field_ding_event_date_1']['table'] = 'field_data_field_ding_event_date';
+  $handler->display->display_options['fields']['field_ding_event_date_1']['field'] = 'field_ding_event_date';
+  $handler->display->display_options['fields']['field_ding_event_date_1']['ui_name'] = 'Event to date';
+  $handler->display->display_options['fields']['field_ding_event_date_1']['label'] = 'event dato slut';
+  $handler->display->display_options['fields']['field_ding_event_date_1']['settings'] = array(
+    'format_type' => 'long_date_only',
+    'fromto' => 'value2',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filterkriterie: Indhold: Udgivet */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filterkriterie: Indhold: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'ding_event' => 'ding_event',
+  );
+  $handler->display->display_options['path'] = 'redia/feed/arrangementer';
+  $handler->display->display_options['sitename_title'] = 0;
+  $translatables['redia_bapp'] = array(
+    t('Master'),
+    t('mere'),
+    t('Udfør'),
+    t('Gendan'),
+    t('Sortér efter'),
+    t('Stigende'),
+    t('Faldende'),
+    t('Antal elementer'),
+    t('- Alle -'),
+    t('Forskydning'),
+    t('« første'),
+    t('‹ forrige'),
+    t('næste ›'),
+    t('sidste »'),
+    t('forfatter'),
+    t('Nid'),
+    t('PubDate RFC-format'),
+    t('Forfatter uid'),
+    t('Navn'),
+    t('Sti'),
+    t('Lead'),
+    t('Brødtekst'),
+    t('[field_ding_news_lead]<br/>
+[field_ding_news_body]'),
+    t('Oprettelsesdato +14 dage'),
+    t('[created_1]'),
+    t('Redia Feed News'),
+    t('Nyheder fra Vejle Bibliotekerne'),
+    t('Redia Feed Events'),
+    t('Kommende arrangementer i Vejle Bibliotekerne'),
+    t('event brødtekst '),
+    t('[field_ding_event_lead]<br/>
+[field_ding_event_body]'),
+    t('event dato start'),
+    t('event dato slut'),
+  );
+  $export['redia_bapp'] = $view;
+
+  return $export;
 }

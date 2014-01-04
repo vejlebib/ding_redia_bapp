@@ -1,5 +1,0 @@
-<?php
-
-function ding_redia_bapp_install() {
-  db_query("UPDATE {system} SET weight = 11 WHERE name = 'ding_redia_bapp'");
-}

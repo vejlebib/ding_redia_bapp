@@ -1,20 +1,12 @@
 <?php
-
 /**
- * Implementation of hook_ctools_plugin_api().
+ * @file
+ * ding_redia_bapp.features.inc
  */
-function ding_redia_bapp_ctools_plugin_api() {
-  list($module, $api) = func_get_args();
-  if ($module == "strongarm" && $api == "strongarm") {
-    return array("version" => 1);
-  }
-}
 
 /**
- * Implementation of hook_views_api().
+ * Implements hook_views_api().
  */
 function ding_redia_bapp_views_api() {
-  return array(
-    'api' => '2',
-  );
+  return array("api" => "3.0");
 }
