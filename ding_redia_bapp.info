@@ -1,4 +1,4 @@
-name = ding_redia_bapp
+name = Ding Redia BApp
 description = RSS feeds to Redia Library App from a D!ng site
 core = 7.x
 package = Ding!
