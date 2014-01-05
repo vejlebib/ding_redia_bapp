@@ -5,3 +5,37 @@
  */
 
 include_once 'ding_redia_bapp.features.inc';
+
+/**
+ * Implements hook_theme().
+ *
+ * See http://views-help.doc.logrus.com/help/views/api-default-views
+ * for help with providing default .tpl files for your views
+ */
+function ding_redia_bapp_theme($existing, $path) {
+  $path = drupal_get_path('module', 'ding_redia_bapp') . '/templates';
+  return array(
+    'views_view_rss__redia_bapp__feed' => array(
+      'arguments' => array('view' => NULL, 'options' => NULL, 'rows' => NULL, 'title' => NULL),
+      'template' => 'views-view-rss--redia-bapp--feed',
+      'original hook' => 'views_view_rss',
+      'path' => $path,
+      'preprocess functions' => array(
+        'template_preprocess',
+        'template_preprocess_views_view_rss',
+        'ding_redia_bapp_preprocess_views_view_rss__redia_bapp__feed',
+      ),
+    ),
+    'views_view_row_rss__redia_bapp__feed' => array(
+      'arguments' => array('view' => NULL, 'options' => NULL, 'row' => NULL),
+      'template' => 'views-view-row-rss--redia-bapp--feed',
+      'original hook' => 'views_view_row_rss',
+      'path' => $path,
+      'preprocess functions' => array(
+        'template_preprocess',
+        'template_preprocess_views_view_row_rss',
+        'ding_redia_bapp_preprocess_views_view_row_rss__redia_bapp__feed',
+      ),
+    ),
+  );
+}
