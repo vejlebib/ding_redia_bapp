@@ -7,6 +7,95 @@
 include_once 'ding_redia_bapp.features.inc';
 
 /**
+ * Implements hook_preprocess_views_view
+ */
+function ding_redia_bapp_preprocess_views_view(&$vars) {
+  $function_name = 'ding_redia_bapp_preprocess_views_view_row_rss__' . $vars['view']->name;
+  if (function_exists($function_name)) {
+    $function_name($vars);
+  }
+  else {
+    print "could not find ".$function_name;
+  }
+}
+
+function ding_redia_bapp_preprocess_views_view_row_rss__redia_bapp__feed(&$vars) {
+  $rowid = $vars['id'];
+  $nodetype = $vars['view']->result[$rowid-1]->_field_data['nid']['entity']->type;
+  $created = $vars['view']->result[$rowid-1]->_field_data['nid']['entity']->created;
+  
+  // Set event_loc
+  $event_loc = '';
+  if (!empty($vars['view']->result[$rowid-1]->field_field_ding_event_location[0]['raw']['thoroughfare'])) {
+    $loc = $vars['view']->result[$rowid-1]->field_field_ding_event_location[0]['raw'];
+    $event_loc = $loc['thoroughfare'] . ', ' . $loc['postal_code'] . ' ' . $loc['locality'];
+  }
+  elseif (!empty($vars['view']->result[$rowid-1]->field_field_ding_library_addresse[0]['raw']['thoroughfare'])) {
+    $loc = $vars['view']->result[$rowid-1]->field_field_ding_library_addresse[0]['raw'];
+    $event_loc = $loc['thoroughfare'] . ', ' . $loc['postal_code'] . ' ' . $loc['locality'];
+  }
+  $vars['event_loc'] = $event_loc;
+  
+  // Set event_start + event_end
+  $event_start = null;
+  $event_end = null;
+  if (isset($vars['view']->result[$rowid-1]->field_field_ding_event_date)) {
+    $timezone = $vars['view']->result[$rowid-1]->field_field_ding_event_date[0]['raw']['timezone'];
+    $time_value = $vars['view']->result[$rowid-1]->field_field_ding_event_date[0]['raw']['value'];
+    $time_value2 = $vars['view']->result[$rowid-1]->field_field_ding_event_date[0]['raw']['value2'];
+    $event_start = strtotime($time_value . ' '. $timezone);
+    $event_end = strtotime($time_value2 . ' '. $timezone);
+  }
+  $vars['event_start'] = $event_start;
+  $vars['event_end'] = $event_end;
+  
+  // Set display_start
+  $vars['display_start'] = $created;
+  
+  // Set display_end
+  switch ($nodetype) {
+    case "ding_news":
+      // display end time is created date + 14 days
+      $display_end = ((int) $created) + 3600 + (14*24*60*60);
+      break;
+    case "ding_event":
+      $display_end = $event_start;
+      break;
+    default:
+      break;
+  }
+  $vars['display_end'] = $display_end;
+  
+  // Set image_path
+  $image_style = '';
+  $image_uri = '';
+  switch ($nodetype) {
+    case "ding_news":
+      if (!empty($vars['view']->result[$rowid-1]->field_field_ding_news_list_image)) {
+        $image_uri = $vars['view']->result[$rowid-1]->field_field_ding_news_list_image[0]['rendered']['#item']['uri'];
+        $image_style = $vars['view']->result[$rowid-1]->field_field_ding_news_list_image[0]['rendered']['#image_style'];
+      }
+      break;
+    case "ding_event":
+      if (!empty($vars['view']->result[$rowid-1]->field_field_ding_event_list_image)) {
+        $image_uri = $vars['view']->result[$rowid-1]->field_field_ding_event_list_image[0]['rendered']['#item']['uri'];
+        $image_style = $vars['view']->result[$rowid-1]->field_field_ding_event_list_image[0]['rendered']['#image_style'];
+      }
+      break;
+    default:
+      break;
+  }
+  // apply image style and get full image path
+  if (!empty($image_style)) {
+    $image_path = image_style_url($image_style, $image_uri);
+  }
+  else {
+    $image_path = '';
+  }
+  $vars['image_path'] = $image_path;
+}
+
+/**
  * Implements hook_theme().
  *
  * See http://views-help.doc.logrus.com/help/views/api-default-views

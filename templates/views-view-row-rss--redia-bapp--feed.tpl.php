@@ -1,19 +1,18 @@
 <?php
 /**
  * @file
- * Default view template to display a item in an RSS feed.
+ * Template to display an item in an Redia BAPPS RSS feed.
  *
- * @ingroup views_templates
+ * Variables (see preproces function ding_redia_bapp_preprocess_views_view_row_rss__redia_bapp__feed):
+ * $display_start: node creation date, in UNIX time
+ * $display_end: UNIX timestamp. If news item, creation date + 14 days. If event item, the time the event begins
+ * $cat_id: NOT IMPLEMENTED.
+ * $image_path: complete path to image file. Value from list image field, with the chosen image style applied
+ * $event_loc: location of the event (plain text)
+ * $event_start = event start date, in UNIX time. NULL for news items
+ * $event_end = event end date, in UNIX time. NULL for news items
  *
  */
-
-$display_start = 0;
-$display_end = 0;
-$cat_id = 0;
-$list_img = "dummyURL";
-$event_loc = "dummyTEXT";
-$event_start = 0;
-$event_end = 0;
 ?>
   <item>
     <title><?php print $title; ?></title>
@@ -30,8 +29,8 @@ $event_end = 0;
     if (isset($cat_id)) {
       print '<redia-rss:category-id>' . $cat_id . '</redia-rss:category-id>';
     }
-    if (!empty($list_img)) {
-      print '<redia-rss:media><redia-rss:item><redia-rss:url>' . $list_img . '</redia-rss:url></redia-rss:item></redia-rss:media>';
+    if (!empty($image_path)) {
+      print '<redia-rss:media><redia-rss:item><redia-rss:url>' . $image_path . '</redia-rss:url></redia-rss:item></redia-rss:media>';
     }
     if (!empty($event_loc)) {
       print '<redia-rss:arrangement-location>' . $event_loc . '</redia-rss:arrangement-location>';
