@@ -133,6 +133,66 @@ function ding_redia_bapp_views_default_views() {
     'guid_field' => 'path',
     'guid_field_is_permalink' => 0,
   );
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Felt: Indhold: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  /* Felt: Oprettelsesdato (PubDate RFC-format) */
+  $handler->display->display_options['fields']['created']['id'] = 'created';
+  $handler->display->display_options['fields']['created']['table'] = 'node';
+  $handler->display->display_options['fields']['created']['field'] = 'created';
+  $handler->display->display_options['fields']['created']['ui_name'] = 'Oprettelsesdato (PubDate RFC-format)';
+  $handler->display->display_options['fields']['created']['label'] = 'PubDate RFC-format';
+  $handler->display->display_options['fields']['created']['date_format'] = 'custom';
+  $handler->display->display_options['fields']['created']['custom_date_format'] = 'r';
+  /* Felt: Indhold: Forfatter uid */
+  $handler->display->display_options['fields']['uid']['id'] = 'uid';
+  $handler->display->display_options['fields']['uid']['table'] = 'node';
+  $handler->display->display_options['fields']['uid']['field'] = 'uid';
+  $handler->display->display_options['fields']['uid']['link_to_user'] = FALSE;
+  /* Felt: Bruger: Navn */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['name']['link_to_user'] = FALSE;
+  /* Felt: Indhold: Sti */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'node';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  $handler->display->display_options['fields']['path']['absolute'] = TRUE;
+  /* Felt: Indhold: Titel */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Felt: Indhold: Lead */
+  $handler->display->display_options['fields']['field_ding_news_lead']['id'] = 'field_ding_news_lead';
+  $handler->display->display_options['fields']['field_ding_news_lead']['table'] = 'field_data_field_ding_news_lead';
+  $handler->display->display_options['fields']['field_ding_news_lead']['field'] = 'field_ding_news_lead';
+  /* Felt: Tekst (Lead + Body) */
+  $handler->display->display_options['fields']['field_ding_news_body']['id'] = 'field_ding_news_body';
+  $handler->display->display_options['fields']['field_ding_news_body']['table'] = 'field_data_field_ding_news_body';
+  $handler->display->display_options['fields']['field_ding_news_body']['field'] = 'field_ding_news_body';
+  $handler->display->display_options['fields']['field_ding_news_body']['ui_name'] = 'Tekst (Lead + Body)';
+  $handler->display->display_options['fields']['field_ding_news_body']['label'] = 'Brødtekst';
+  $handler->display->display_options['fields']['field_ding_news_body']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_ding_news_body']['alter']['text'] = '[field_ding_news_lead]<br/>
+  [field_ding_news_body]';
+  /* Felt: Indhold: List image */
+  $handler->display->display_options['fields']['field_ding_news_list_image']['id'] = 'field_ding_news_list_image';
+  $handler->display->display_options['fields']['field_ding_news_list_image']['table'] = 'field_data_field_ding_news_list_image';
+  $handler->display->display_options['fields']['field_ding_news_list_image']['field'] = 'field_ding_news_list_image';
+  $handler->display->display_options['fields']['field_ding_news_list_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_ding_news_list_image']['settings'] = array(
+    'image_style' => 'medium',
+    'image_link' => '',
+  );
   $handler->display->display_options['path'] = 'redia/feed/nyheder';
   $handler->display->display_options['sitename_title'] = 0;
 
@@ -250,6 +310,15 @@ function ding_redia_bapp_views_default_views() {
       'address' => 'address',
     ),
   );
+  /* Felt: Indhold: List image */
+  $handler->display->display_options['fields']['field_ding_event_list_image']['id'] = 'field_ding_event_list_image';
+  $handler->display->display_options['fields']['field_ding_event_list_image']['table'] = 'field_data_field_ding_event_list_image';
+  $handler->display->display_options['fields']['field_ding_event_list_image']['field'] = 'field_ding_event_list_image';
+  $handler->display->display_options['fields']['field_ding_event_list_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_ding_event_list_image']['settings'] = array(
+    'image_style' => 'medium',
+    'image_link' => '',
+  );
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Indhold: Date -  start date (field_ding_event_date) */
   $handler->display->display_options['sorts']['field_ding_event_date_value']['id'] = 'field_ding_event_date_value';
@@ -309,7 +378,7 @@ function ding_redia_bapp_views_default_views() {
 [field_ding_news_body]'),
     t('Redia Feed News'),
     t('Nyheder fra Vejle Bibliotekerne'),
-    t('more'),
+    t('List image'),
     t('Redia Feed Events'),
     t('Kommende arrangementer i Vejle Bibliotekerne'),
     t('Group node from OG membership'),
