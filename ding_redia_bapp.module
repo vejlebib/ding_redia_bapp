@@ -14,16 +14,13 @@ function ding_redia_bapp_preprocess_views_view(&$vars) {
   if (function_exists($function_name)) {
     $function_name($vars);
   }
-  else {
-    print "could not find ".$function_name;
-  }
 }
 
 function ding_redia_bapp_preprocess_views_view_row_rss__redia_bapp__feed(&$vars) {
   $rowid = $vars['id'];
   $nodetype = $vars['view']->result[$rowid-1]->_field_data['nid']['entity']->type;
   $created = $vars['view']->result[$rowid-1]->_field_data['nid']['entity']->created;
-  
+
   // Set event_loc
   $event_loc = '';
   if (!empty($vars['view']->result[$rowid-1]->field_field_ding_event_location[0]['raw']['thoroughfare'])) {
@@ -35,7 +32,7 @@ function ding_redia_bapp_preprocess_views_view_row_rss__redia_bapp__feed(&$vars)
     $event_loc = $loc['thoroughfare'] . ', ' . $loc['postal_code'] . ' ' . $loc['locality'];
   }
   $vars['event_loc'] = $event_loc;
-  
+
   // Set event_start + event_end
   $event_start = null;
   $event_end = null;
@@ -48,10 +45,10 @@ function ding_redia_bapp_preprocess_views_view_row_rss__redia_bapp__feed(&$vars)
   }
   $vars['event_start'] = $event_start;
   $vars['event_end'] = $event_end;
-  
+
   // Set display_start
   $vars['display_start'] = $created;
-  
+
   // Set display_end
   switch ($nodetype) {
     case "ding_news":
@@ -65,7 +62,7 @@ function ding_redia_bapp_preprocess_views_view_row_rss__redia_bapp__feed(&$vars)
       break;
   }
   $vars['display_end'] = $display_end;
-  
+
   // Set image_path
   $image_style = '';
   $image_uri = '';
