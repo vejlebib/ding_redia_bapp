@@ -37,11 +37,15 @@ function ding_redia_bapp_preprocess_views_view_row_rss__redia_bapp__feed(&$vars)
   $event_start = null;
   $event_end = null;
   if (isset($vars['view']->result[$rowid-1]->field_field_ding_event_date)) {
-    $timezone = $vars['view']->result[$rowid-1]->field_field_ding_event_date[0]['raw']['timezone'];
     $time_value = $vars['view']->result[$rowid-1]->field_field_ding_event_date[0]['raw']['value'];
     $time_value2 = $vars['view']->result[$rowid-1]->field_field_ding_event_date[0]['raw']['value2'];
-    $event_start = strtotime($time_value . ' '. $timezone);
-    $event_end = strtotime($time_value2 . ' '. $timezone);
+    
+    //Dates are in database timezone = UTC
+    $date1 = new DateTime($time_value, new DateTimeZone("UTC"));
+    $date2 = new DateTime($time_value2, new DateTimeZone("UTC"));
+
+    $event_start = $date1->getTimestamp();
+    $event_end = $date2->getTimestamp();
   }
   $vars['event_start'] = $event_start;
   $vars['event_end'] = $event_end;
